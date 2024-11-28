@@ -1,10 +1,10 @@
-'use client';
+'use client'
 
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import { Sheet, SheetClose, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetClose, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet';
 import { sidebarLinks } from '@/constants';
 import { cn } from '@/lib/utils';
 
@@ -33,17 +33,18 @@ const MobileNav = () => {
             />
             <p className="text-[20px] font-extrabold text-white">Video-Talk</p>
           </Link>
+          <SheetTitle className="text-[15px] font-extrabold text-white"></SheetTitle>
           <div className="flex h-[calc(100vh-72px)] flex-col justify-between overflow-y-auto">
             <SheetClose asChild>
               <section className=" flex h-full flex-col gap-6 pt-16 text-white">
-                {sidebarLinks.map((item) => {
-                  const isActive = pathname === item.route;
+                {sidebarLinks.map((link) => {
+                  const isActive = pathname === link.route;
 
                   return (
-                    <SheetClose asChild key={item.route}>
+                    <SheetClose asChild key={link.route}>
                       <Link
-                        href={item.route}
-                        key={item.label}
+                        href={link.route}
+                        key={link.label}
                         className={cn(
                           'flex gap-4 items-center p-4 rounded-lg w-full max-w-60',
                           {
@@ -52,12 +53,12 @@ const MobileNav = () => {
                         )}
                       >
                         <Image
-                          src={item.imgURL}
-                          alt={item.label}
+                          src={link.imgURL}
+                          alt={link.label}
                           width={20}
                           height={20}
                         />
-                        <p className="font-semibold">{item.label}</p>
+                        <p className="font-semibold">{link.label}</p>
                       </Link>
                     </SheetClose>
                   );

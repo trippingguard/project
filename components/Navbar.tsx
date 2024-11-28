@@ -2,6 +2,7 @@ import Link from 'next/link';
 import React from 'react';
 import Image from 'next/image';
 import MobileNav from './MobileNav';
+import { SignedIn, UserButton } from '@clerk/nextjs';
 
 
 const Navbar = () => {
@@ -12,7 +13,7 @@ const Navbar = () => {
         src="/icons/logo_bl.png"
         width={42}
         height={42}
-        alt="Judiciary of Tanzania Logo"
+        alt="Judiciary of Tanzania Logo"  
         className="max-sm:size-10"
       />
       <p className="text-[26px] font-extrabold text-white max-sm:hidden">
@@ -20,8 +21,9 @@ const Navbar = () => {
       </p>
     </Link>
     <div className="flex-between gap-5">
-       { /* user management */}
-
+        <SignedIn>
+          <UserButton afterSignOutUrl="/sign-in" />
+        </SignedIn>
 
        <MobileNav />
       </div>
